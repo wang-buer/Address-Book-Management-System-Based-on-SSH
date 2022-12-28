@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="graduation.design.model.Banji" table="t_Banji">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="s_0" column="t_name" />
+		<property name="s_1" column="t_ldmz" />
+		<property name="s_2" column="t_dianhua" />
+		<property name="s_3" column="t_bz" />
+		<many-to-one name="xibie" column="xibie_id" class="graduation.design.model.Xibie" outer-join="false" lazy="false">
+		</many-to-one>
+	</class>
+</hibernate-mapping>

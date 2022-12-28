@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="graduation.design.mapper.BanjiMapper">
+	<resultMap type="Banji" id="banjiResultMap">
+		<id property="id" column="id" />
+		<result property="s_0" column="t_name" />
+		<result property="s_1" column="t_ldmz" />
+		<result property="s_2" column="t_dianhua" />
+		<result property="s_3" column="t_bz" />
+		<association property="xibie" column="xibie_id"  
+			select="graduation.design.mapper.XibieMapper.selectObject"/>
+	</resultMap>
+
+	<delete id="deleteObject" parameterType="int">
+		delete from t_banji where id=#{id};
+	</delete>
+
+	<select id="selectObject" parameterType="int" resultMap="banjiResultMap">
+		SELECT t_banji.id,
+			   t_banji.t_name,
+			   t_banji.t_ldmz,
+			   t_banji.t_dianhua,
+			   t_banji.t_bz,
+			   t_xibie.id xibie_id
+		  FROM t_banji, t_xibie
+		 WHERE t_banji.id = #{id}
+		   AND t_banji.xibie_id = t_xibie.id
+	</select>
+
+	<select id="getObjectList"  resultMap="banjiResultMap" parameterType="java.util.Map">
+		SELECT t_banji.id,
+			   t_banji.t_name,
+			   t_banji.t_ldmz,
+			   t_banji.t_dianhua,
+			   t_banji.t_bz,
+			   t_xibie.id xibie_id
+		  FROM t_banji, t_xibie
+		 WHERE 1 = 1
+		   AND t_banji.xibie_id = t_xibie.id
+		<if test="field == 't_xibie.s_0'">
+			and t_xibie.t_name like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_0'">
+			and t_banji.t_name like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_1'">
+			and t_banji.t_ldmz like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_2'">
+			and t_banji.t_dianhua like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_3'">
+			and t_banji.t_bz like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insertObject" parameterType="Banji">
+		INSERT INTO t_banji(t_name, t_ldmz, t_dianhua, t_bz, xibie_id )
+				VALUES(#{s_0}, #{s_1}, #{s_2}, #{s_3}, #{xibie.id})
+	</insert>
+
+	<update id="updateObject" parameterType="Banji">
+		UPDATE t_banji set t_name=#{s_0}, t_ldmz=#{s_1}, t_dianhua=#{s_2}, t_bz=#{s_3}, xibie_id =#{xibie.id} 
+				where id=#{id}
+	</update>
+
+</mapper>
+

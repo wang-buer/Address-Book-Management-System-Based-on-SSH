@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="graduation.design.mapper.StudentMapper">
+	<resultMap type="Student" id="studentResultMap">
+		<id property="id" column="id" />
+		<result property="s_0" column="t_name" />
+		<result property="s_1" column="t_dianhua" />
+		<result property="s_2" column="t_qq" />
+		<result property="s_3" column="t_bz" />
+		<association property="xibie" column="xibie_id"  
+			select="graduation.design.mapper.XibieMapper.selectObject"/>
+		<association property="banji" column="banji_id"  
+			select="graduation.design.mapper.BanjiMapper.selectObject"/>
+		<association property="user" column="user_id"  
+			select="graduation.design.mapper.UserMapper.selectObject"/>
+	</resultMap>
+
+	<delete id="deleteObject" parameterType="int">
+		delete from t_student where id=#{id};
+	</delete>
+
+	<select id="selectObject" parameterType="int" resultMap="studentResultMap">
+		SELECT t_student.id,
+			   t_student.t_name,
+			   t_student.t_dianhua,
+			   t_student.t_qq,
+			   t_student.t_bz,
+			   t_xibie.id xibie_id,
+			   t_banji.id banji_id,
+			   t_user.id user_id
+		  FROM t_student, t_xibie, t_banji, t_user
+		 WHERE t_student.id = #{id}
+		   AND t_student.xibie_id = t_xibie.id
+		   AND t_student.banji_id = t_banji.id
+		   AND t_student.user_id = t_user.id
+	</select>
+
+	<select id="getObjectList"  resultMap="studentResultMap" parameterType="java.util.Map">
+		SELECT t_student.id,
+			   t_student.t_name,
+			   t_student.t_dianhua,
+			   t_student.t_qq,
+			   t_student.t_bz,
+			   t_xibie.id xibie_id,
+			   t_banji.id banji_id,
+			   t_user.id user_id
+		  FROM t_student, t_xibie, t_banji, t_user
+		 WHERE 1 = 1
+		   AND t_student.xibie_id = t_xibie.id
+		<if test="field == 't_xibie.s_0'">
+			and t_xibie.t_name like '%${fieldValue}%'
+		</if>
+		   AND t_student.banji_id = t_banji.id
+		<if test="field == 't_banji.s_0'">
+			and t_banji.t_name like '%${fieldValue}%'
+		</if>
+		   AND t_student.user_id = t_user.id
+		<if test="field == 't_user.s_0'">
+			and t_user.u_name like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_0'">
+			and t_student.t_name like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_1'">
+			and t_student.t_dianhua like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_2'">
+			and t_student.t_qq like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_3'">
+			and t_student.t_bz like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insertObject" parameterType="Student">
+		INSERT INTO t_student(t_name, t_dianhua, t_qq, t_bz, xibie_id , banji_id , user_id )
+				VALUES(#{s_0}, #{s_1}, #{s_2}, #{s_3}, #{xibie.id}, #{banji.id}, #{user.id})
+	</insert>
+
+	<update id="updateObject" parameterType="Student">
+		UPDATE t_student set t_name=#{s_0}, t_dianhua=#{s_1}, t_qq=#{s_2}, t_bz=#{s_3}, xibie_id =#{xibie.id} , banji_id =#{banji.id} , user_id =#{user.id} 
+				where id=#{id}
+	</update>
+
+</mapper>
+

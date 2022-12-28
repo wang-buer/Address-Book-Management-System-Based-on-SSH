@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="graduation.design.mapper.SexguanliMapper">
+	<resultMap type="Sexguanli" id="sexguanliResultMap">
+		<id property="id" column="id" />
+		<result property="s_0" column="t_name" />
+		<result property="s_1" column="t_bz" />
+	</resultMap>
+
+	<delete id="deleteObject" parameterType="int">
+		delete from t_sexguanli where id=#{id};
+	</delete>
+
+	<select id="selectObject" parameterType="int" resultMap="sexguanliResultMap">
+		SELECT t_sexguanli.id,
+			   t_sexguanli.t_name,
+			   t_sexguanli.t_bz
+		  FROM t_sexguanli
+		 WHERE t_sexguanli.id = #{id}
+	</select>
+
+	<select id="getObjectList"  resultMap="sexguanliResultMap" parameterType="java.util.Map">
+		SELECT t_sexguanli.id,
+			   t_sexguanli.t_name,
+			   t_sexguanli.t_bz
+		  FROM t_sexguanli
+		 WHERE 1 = 1
+		<if test="field == 's_0'">
+			and t_sexguanli.t_name like '%${fieldValue}%'
+		</if>
+		<if test="field == 's_1'">
+			and t_sexguanli.t_bz like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insertObject" parameterType="Sexguanli">
+		INSERT INTO t_sexguanli(t_name, t_bz)
+				VALUES(#{s_0}, #{s_1})
+	</insert>
+
+	<update id="updateObject" parameterType="Sexguanli">
+		UPDATE t_sexguanli set t_name=#{s_0}, t_bz=#{s_1}
+				where id=#{id}
+	</update>
+
+</mapper>
+
