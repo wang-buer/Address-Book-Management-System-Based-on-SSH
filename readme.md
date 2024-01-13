@@ -1,11 +1,5 @@
 # 基于SSH的通讯录管理系统
 
-## 获取方式
-
-关注公众号： **程序员王不二**，回复关键词  ：**通讯录** ，获取完整版源码
-
-![公众号](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202205281253739.png)
-
 ## 1、项目介绍
 
 基于SSH的通讯录管理系统拥有两种角色：管理员和用户
@@ -34,31 +28,24 @@
 
 ### 4.1 登录和注册
 
-![登录](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202212262144000.jpg)
+![登录](https://www.codeshop.fun/Typora-Images/202212262144000.jpg)
 
-![注册](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202212262145759.jpg)
+![注册](https://www.codeshop.fun/Typora-Images/202212262145759.jpg)
 
 ### 4.2 其他模块
 
-![用户管理](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202212262145050.jpg)
+![用户管理](https://www.codeshop.fun/Typora-Images/202212262145050.jpg)
 
-![公告管理](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202212262145731.jpg)
+![公告管理](https://www.codeshop.fun/Typora-Images/202212262145731.jpg)
 
-![系别管理](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202212262145509.jpg)
+![系别管理](https://www.codeshop.fun/Typora-Images/202212262145509.jpg)
 
-![班级管理](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202212262145336.jpg)
+![班级管理](https://www.codeshop.fun/Typora-Images/202212262145336.jpg)
 
-![通讯信息管理](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202212262145203.jpg)
+![通讯信息管理](https://www.codeshop.fun/Typora-Images/202212262145203.jpg)
 
-## 5、视频演示
+## 获取方式
 
-[点击播放视频，视频位于文章最后](输入链接)
+下方扫一扫关注后，后台回复关键词：**通讯录**，查看导入教程视频、sql脚本和源码等
 
-## 6、获取方式
-
-关注公众号： **程序员王不二**，回复关键词  ：**通讯录** ，获取完整版源码
-
-
-
-![公众号](https://project-images-1256969109.cos.ap-chongqing.myqcloud.com/Typora-Images/202205281253739.png)
-
+ ![](https://www.codeshop.fun/Typora-Images/202205281253739.png)
